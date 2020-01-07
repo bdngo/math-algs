@@ -1,5 +1,3 @@
-from functools import reduce
-
 def prime_factors(n, k=2):
     """Returns the prime factorization of a natural number N."""
     if n == 1:
