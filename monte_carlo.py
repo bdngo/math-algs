@@ -11,6 +11,7 @@ def estimate_pi():
     return 4 * (in_func / samples)
 
 def monte_carlo_integration(f, bounds):
+    """Numerically integrates F between BOUNDS."""
     left, right = bounds[0], bounds[1]
     samples, integral = 1000000, 0.
     for _ in range(samples):
