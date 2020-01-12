@@ -1,5 +1,3 @@
-from math import log
-
 def trial_div(n):
     """Determines if natural number N is prime by trial division."""
     if n == 1:
@@ -11,12 +9,14 @@ def trial_div(n):
         i += 1
     return True
 
+
 def lucas_lehmer():
     """Generates the Lucas-Lehmer sequence."""
     seed = 4
     while True:
         yield seed
         seed = seed**2 - 2
+
 
 def ll_primality(n):
     """Determines if Mersenne number 2^N - 1 is prime via the Lucas-Lehmer primality test."""
@@ -28,4 +28,15 @@ def ll_primality(n):
     if ll % (2**n - 1) == 0:
         return True
     return False
+
+
+def sieve(n):
+    """Yields all primes below N using the Sieve of Eratosthenes."""
+    primes, p = [i for i in range(2, n + 1)], 2
+    while p**2 < n:
+        for i in primes:
+            if i % p == 0 and i != p:
+                primes.remove(i)
+        p += 1
+    yield from primes
 
