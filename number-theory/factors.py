@@ -21,15 +21,9 @@ def print_pf(n):
 
 def factors(n):
     """Returns all the factors of an integer N."""
-    factors = []
-    for i in range(1, n + 1):
-        if n % i == 0:
-            factors += [i]
-    return factors
+    return [i for i in range(1, n + 1) if n % i == 0]
 
 def perfect_num(n):
     """Determines if natural number N is a perfect number."""
-    if sum(factors(n)[:-1]) == n:
-        return True
-    return False
+    return sum(factors(n)[:-1]) == n
 

@@ -5,9 +5,7 @@ def digit_root(n, base=10):
     while n:
         total += n % base
         n //= base
-    if total >= base:
-        return digit_root(total)
-    return total
+    return digit_root(total) if total >= base else total
 
 def int_to_list(n, base=10):
     """Returns a list of the digits of N."""
@@ -21,13 +19,9 @@ def check_sum(n):
     """Checks if N is a valid bank card."""
     digits, doubled_digits = int_to_list(n), []
     for i in range(len(digits)):
-        if i % 2 == 0:
-            doubled_digits.append(digit_root(digits[i] * 2))
-        else:
-            doubled_digits.append(digits[i])
-    if sum(doubled_digits) % 10 == 0:
-        return True
-    return False
+        doubled_digits.append(
+            digit_root(digits[i] * 2) if i % 2 == 0 else digits[i])
+    return sum(doubled_digits) % 10 == 0
 
 def vat_check(n):
     """Checks if N satisfies the old HMRC VAT number check."""
@@ -37,7 +31,5 @@ def vat_check(n):
         digits[i] *= factor
         factor -= 1
     check_digit = sum(digits) + (last_two[0]*10 + last_two[1]) + 55
-    if check_digit % 97 == 0:
-        return True
-    return False
+    return check_digit % 97 == 0
 
