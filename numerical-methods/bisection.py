@@ -23,4 +23,3 @@ def find_zeroes(function, interval):
         elif sgn(right_bound) != sgn(mid_bound):
             left, zero = midpoint, midpoint
     return zero
-

@@ -10,4 +10,3 @@ def longest_word(txt, regex):
         if len(i) > len(longest) and not search(bad_letters, i):
             longest = i
     return longest
-

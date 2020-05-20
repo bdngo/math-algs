@@ -13,9 +13,7 @@ def narc(n):
 
 def narc_num(n):
     """Determines if an integer N is a narcissistic number."""
-    if narc(n) == n:
-        return True
-    return False
+    return narc(n) == n
 
 def narc_cycle(n):
     curr_narc = narc(n)

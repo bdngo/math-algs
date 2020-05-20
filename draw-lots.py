@@ -1,6 +1,6 @@
 from random import sample
 
-names = ['Alfred', 'Bryan', 'Harsh', 'Leo', 'Stanley']
+names = ['Alice', 'Bob', 'Charlie', 'Danielle', 'Emily']
 
 def draw_lots(name_lst):
     """Draws lots from NAME_LST, prints each result."""

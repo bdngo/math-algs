@@ -25,9 +25,7 @@ def ll_primality(n):
     luc_leh = lucas_lehmer()
     for _ in range(n - 1):
         ll = next(luc_leh)
-    if ll % (2**n - 1) == 0:
-        return True
-    return False
+    return ll % (2**n - 1) == 0
 
 
 def sieve(n):
