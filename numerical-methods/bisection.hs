@@ -9,4 +9,4 @@ bisection f (lower, upper) threshold
         mid = (lower + upper) / 2
         lBound = f lower
         uBound = f upper
-        mBound = f (mid)
+        mBound = f mid

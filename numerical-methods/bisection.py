@@ -11,11 +11,11 @@ def sgn(x):
     else:
         return 1
 
-def find_zeroes(function, interval):
+def find_zeroes(function, interval, threshold):
     """Solves for the intersection of 2 single-variable functions."""
     zero, threshold = 0, 100
     left, right = interval[0], interval[1]
-    while function(zero) != 0:
+    while abs(function(zero)) > threshold:
         midpoint = (left + right) / 2
         left_bound, right_bound, mid_bound = function(left), function(right), function(midpoint)
         if sgn(left_bound) != sgn(mid_bound):
