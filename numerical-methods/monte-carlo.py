@@ -18,4 +18,3 @@ def monte_carlo_integration(f, bounds):
         rand_point = uniform(left, right)
         integral += f(rand_point)
     return (right - left) / samples * integral
-
