@@ -12,7 +12,7 @@ piHelper est sims gen = piHelper newEst (sims - 1) newGen
         (y, newGen) = randomR (-1, 1) gen1 :: (Double, StdGen)
 
 monteCarloInt :: (Double -> Double) -> (Double, Double) -> Integer -> Double
-monteCarloInt f (left, right) sims = deltaX * mciHelper f (left, right) sims 0 (mkStdGen 100))
+monteCarloInt f (left, right) sims = deltaX * mciHelper f (left, right) sims 0 (mkStdGen 100)
     where deltaX = (right - left) / (fromIntegral sims)
 
 mciHelper :: (Double -> Double) -> (Double, Double) -> Integer -> Double -> StdGen -> Double
