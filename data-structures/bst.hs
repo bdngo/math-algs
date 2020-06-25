@@ -31,15 +31,14 @@ delete t x
 delHelper :: (Ord a) => BST a -> BST a
 delHelper t
     | isLeaf t = EmptyBST
-    | left t == EmptyBST = right t
-    | right t == EmptyBST = left t
+    | left t /= EmptyBST = left t
+    | right t /= EmptyBST = right t
     | otherwise = BST (val succNode) (left t) (delete succNode (val succNode))
-    where succNode = findSucc (right t)
-
-findSucc :: (Ord a) => BST a -> BST a
-findSucc t
-    | isLeaf t || left t == EmptyBST = t
-    | otherwise = findSucc (left t)
+    where
+        findSucc x
+            | isLeaf x || left x == EmptyBST = x
+            | otherwise = findSucc (left x)
+        succNode = findSucc (right t)
 
 testBST :: BST Integer
 testBST = BST 8
@@ -54,6 +53,6 @@ testBST = BST 8
                     (BST 13 EmptyBST EmptyBST)
                     EmptyBST))
 
-printBST :: (Show a) => BST a -> [a]
+printBST :: BST a -> [a]
 printBST EmptyBST = []
 printBST t = printBST (left t) ++ [val t] ++ printBST (right t)
