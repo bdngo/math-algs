@@ -40,6 +40,14 @@ delHelper t
             | otherwise = findSucc (left x)
         succNode = findSucc (right t)
 
+isBST :: (Ord a) => BST a -> Bool
+isBST EmptyBST = True
+isBST t
+    | isLeaf t = True
+    | left t == EmptyBST = (val t < val (right t)) && isBST (right t)
+    | right t == EmptyBST = isBST (left t) && (val t > val (left t))
+    | otherwise = isBST (left t) && val (left t) < val t && val t < val (right t) && isBST (right t)
+
 testBST :: BST Integer
 testBST = BST 8
             (BST 3

@@ -26,7 +26,7 @@ class BST:
         elif target < self.val:
             return BST.find(self.left, target)
         return BST.find(self.right, target)
-    
+
 
     def insert(self, node):
         def insert_helper(t, node):
@@ -63,6 +63,16 @@ class BST:
                 self = self.right
             else:
                 self = BST.empty
+
+
+    def is_BST(self):
+        if self == BST.empty or self.is_leaf():
+            return True
+        if self.left == BST.empty:
+            return self.val < self.right.val and self.right.is_BST()
+        elif self.right == BST.empty:
+            return self.left.is_BST and self.val > self.left.val
+        return self.left.is_BST and self.left.val < self.val < self.right.val and self.right.is_BST()
 
 
 test_bst = BST(8,
