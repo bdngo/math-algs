@@ -1,3 +1,8 @@
+import qualified Data.Map as M
+
+testList :: (Ord a, Integral a) => [a]
+testList = [6, 18, 14, 19, 20, 12, 3, 7, 16, 8]
+
 insertionSort :: (Ord a) => [a] -> [a]
 insertionSort = isHelper []
 
@@ -34,5 +39,13 @@ merge (a:as) (b:bs)
     | a <= b = a : merge as (b:bs)
     | otherwise = b : merge (a:as) bs
 
--- TODO: LSD sort
--- lsdSort :: (Ord a) => [a] -> [a]
+emptyRadix :: (Integral a) => M.Map a [a]
+emptyRadix = M.fromList [(i, []) | i <- [0..9]]
+
+lsdSort :: (Integral a) => [a] -> [a]
+lsdSort = lsdHelper emptyRadix 1
+
+lsdHelper :: (Integral a) => M.Map a [a] -> a -> [a] -> [a]
+lsdHelper _ 1000000 xs = xs
+lsdHelper radixMap mask [] = lsdHelper emptyRadix (mask * 10) (concat $ M.elems radixMap)
+lsdHelper radixMap mask (x:xs) = lsdHelper (M.insertWith (flip (++)) (x `div` mask `mod` 10) [x] radixMap) mask xs
