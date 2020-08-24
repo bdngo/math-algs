@@ -23,7 +23,7 @@ class HuffmanTree:
 
 
 def encode(s):
-    def str_to_leaves(s): 
+    def str_to_leaves(s):
         """Converts S to a dictionary mapping of character frequencies."""
         d = {}
         for i in s:
@@ -51,7 +51,7 @@ def decode(code, tree):
             s.append(tree_ptr._char)
             tree_ptr = tree
     return ''.join(s)
-        
+
 
 def main():
     s = "the quick brown fox jumps over the lazy dog"

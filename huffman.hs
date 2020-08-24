@@ -17,7 +17,7 @@ char :: HuffmanTree -> Char
 char (Leaf c _) = c
 char (Internal _ _ _) = '-'
 
-{-- ENCODING --} 
+{-- ENCODING --}
 
 construct :: [HuffmanTree] -> HuffmanTree
 construct = head . conHelper
@@ -29,7 +29,7 @@ conHelper (a:b:xs) = conHelper $ sortBy (compare `on` freq) (newNode : xs)
     where newNode = Internal (freq a + freq b) a b
 
 map2Leaves :: [(Char, Integer)] -> [HuffmanTree]
-map2Leaves = map (\(x, y) -> Leaf x y) 
+map2Leaves = map (\(x, y) -> Leaf x y)
 
 str2Freq :: String -> [(Char, Integer)]
 str2Freq = sortBy (compare `on` snd) . map (\x -> (head x, fromIntegral $ length x)) . group . sort
@@ -49,7 +49,7 @@ decode s t = deHelper t "" s t
 
 deHelper :: HuffmanTree -> String -> String -> HuffmanTree -> String
 deHelper ogTree s xs (Leaf c _) = deHelper ogTree (s ++ [c]) xs ogTree
-deHelper _ s "" _ = s 
+deHelper _ s "" _ = s
 deHelper ogTree s (x:xs) (Internal _ ls rs)
     | x == '0' = deHelper ogTree s xs ls
     | otherwise = deHelper ogTree s xs rs
