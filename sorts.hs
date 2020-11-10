@@ -1,3 +1,10 @@
+module Sorts (
+    insertionSort,
+    quicksort,
+    mergesort,
+    lsdSort
+) where
+
 import qualified Data.Map as M
 
 testList :: (Ord a, Integral a) => [a]
@@ -12,7 +19,7 @@ isHelper ys (x:xs) = isHelper (is2Helper x ys) xs
 
 is2Helper :: (Ord a) => a -> [a] -> [a]
 is2Helper x [] = [x]
-is2Helper x (y:ys) = if x <= y then (x:y:ys) else y:is2Helper x ys
+is2Helper x (y:ys) = if x <= y then x:y:ys else y:is2Helper x ys
 
 -- selectionSort :: (Ord a) => a -> [a] -> [a]
 -- selectionSort [] = []

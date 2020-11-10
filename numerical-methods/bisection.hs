@@ -1,5 +1,8 @@
-bisection :: (Double -> Double) -> (Double, Double) -> Double -> Double
+module Bisection (
+    bisection
+) where
 
+bisection :: (Double -> Double) -> (Double, Double) -> Double -> Double
 bisection f (lower, upper) threshold
     | abs lBound <= threshold = lower
     | abs uBound <= threshold = upper

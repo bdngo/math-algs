@@ -1,7 +1,13 @@
+module Huffman (
+    HuffmanTree,
+    encode,
+    decode
+) where
+
 import qualified Data.Map as M
-import Data.List
-import Data.Function
-import Data.Maybe
+import Data.List ( group, sort, sortBy )
+import Data.Function ( on )
+import Data.Maybe ( fromMaybe )
 
 {-- CONSTRUCTOR --}
 
@@ -15,7 +21,7 @@ freq (Leaf _ f) = f
 
 char :: HuffmanTree -> Char
 char (Leaf c _) = c
-char (Internal _ _ _) = '-'
+char Internal {} = '-'
 
 {-- ENCODING --}
 
@@ -29,13 +35,13 @@ conHelper (a:b:xs) = conHelper $ sortBy (compare `on` freq) (newNode : xs)
     where newNode = Internal (freq a + freq b) a b
 
 map2Leaves :: [(Char, Integer)] -> [HuffmanTree]
-map2Leaves = map (\(x, y) -> Leaf x y)
+map2Leaves = map (uncurry Leaf)
 
 str2Freq :: String -> [(Char, Integer)]
 str2Freq = sortBy (compare `on` snd) . map (\x -> (head x, fromIntegral $ length x)) . group . sort
 
 encode :: String -> (String, HuffmanTree)
-encode s = (concat $ map (fromMaybe "" . flip M.lookup charMap) s, tree)
+encode s = (concatMap (fromMaybe "" . flip M.lookup charMap) s, tree)
     where
         charMap = M.fromList [(i, enHelper tree "" i) | i <- s]
         tree = construct $ map2Leaves $ str2Freq s

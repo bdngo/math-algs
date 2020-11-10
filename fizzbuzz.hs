@@ -1,5 +1,8 @@
-fizzbuzz :: [String]
+module Fizzbuzz (
+    fizzbuzz
+) where
 
+fizzbuzz :: [String]
 fizzbuzz = map fbCond [1..]
     where
         fbCond n

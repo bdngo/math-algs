@@ -1,3 +1,12 @@
+module BST (
+    BST(..),
+    find,
+    insert,
+    delete,
+    isBST,
+    printBST
+) where
+
 data BST a = EmptyBST | BST {
     val :: a,
     left :: BST a,

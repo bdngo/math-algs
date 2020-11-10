@@ -1,11 +1,19 @@
+module LinkedList (
+    LinkedList(..),
+    fromList,
+    toList,
+    printLL,
+    append,
+    prepend
+) where
+
 data LinkedList a = EmptyLL | LinkedList {
     headLL :: a,
     tailLL :: LinkedList a
 } deriving (Show)
 
 fromList :: [a] -> LinkedList a
-fromList [] = EmptyLL
-fromList (x:xs) = LinkedList x (fromList xs)
+fromList = foldr LinkedList EmptyLL
 
 toList :: LinkedList a -> [a]
 toList EmptyLL = []

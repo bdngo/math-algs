@@ -1,3 +1,9 @@
+module Elo (
+    playerA,
+    playerB,
+    updateRanking
+) where
+
 playerA :: Integer -> Integer -> Double
 playerA ra rb = 1 / (1 + 10**(fromIntegral (rb - ra) / diffWeight))
     where diffWeight = 400
