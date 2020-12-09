@@ -1,9 +1,11 @@
 from random import sample
 from math import sqrt, e
+from typing import Callable, List, Tuple, Union
 
 candidates = range(10000)
 
-def stopping_problem(lst, f=lambda x: x):
+def stopping_problem(lst: Union[int, float],
+                        f: Callable[[Union[int, float]], float]=lambda x: x) -> Tuple[float, int]:
     """Returns the optimal element of LST according to F paradigm. Default F is identity.
     Use square root for most efficient runtime, or use 1/e for best candidate."""
     lst = sample(lst, len(lst))

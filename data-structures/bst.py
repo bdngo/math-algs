@@ -1,24 +1,31 @@
-class BST:
+from __future__ import annotations
+from typing import Generic, TypeVar, Union
+
+T = TypeVar('T') 
+
+class BST(Generic[T]):
     """A binary search tree."""
 
     empty = None
-    def __init__(self, val, left=empty, right=empty):
+    def __init__(self, val: T,
+                    left: Union[None, BST]=empty,
+                    right: Union[None, BST]=empty):
         self.val = val
         self.left = left
         self.right = right
 
 
-    def __str__(self):
+    def __str__(self) -> str:
         if self is BST.empty:
             return ""
         return BST.__str__(self.left) + " {0} ".format(self.val) + BST.__str__(self.right)
 
 
-    def is_leaf(self):
+    def is_leaf(self) -> bool:
         return not self.left and not self.right
 
 
-    def find(self, target):
+    def find(self, target: T) -> Union[str, T]:
         if self is BST.empty:
             return "not found"
         if self.val == target:
@@ -28,8 +35,8 @@ class BST:
         return BST.find(self.right, target)
 
 
-    def insert(self, node):
-        def insert_helper(t, node):
+    def insert(self, node: BST) -> None:
+        def insert_helper(t: BST, node: BST) -> BST:
             if t is BST.empty:
                 return BST(node)
             if node < t.val:
@@ -40,8 +47,8 @@ class BST:
         self = insert_helper(self, node)
 
 
-    def delete(self, node):
-        def find_succ(t):
+    def delete(self, node: BST) -> None:
+        def find_succ(t: BST) -> BST:
             curr_succ = t
             while t.left is not BST.empty:
                 curr_succ = t.left

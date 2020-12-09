@@ -1,4 +1,4 @@
-def fizzbuzz(n):
+def fizzbuzz(n: int) -> None:
     """Solves the FizzBuzz problem.
 
     >>> fizzbuzz(10)
@@ -22,4 +22,3 @@ def fizzbuzz(n):
         if s == '':
             s += str(i)
         print(s)
-

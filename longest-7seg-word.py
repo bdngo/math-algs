@@ -3,7 +3,7 @@ from re import search
 bad_letters = '[gkmqvwxz]'
 words_list = open("words.txt").read().split('\n')
 
-def longest_word(txt, regex):
+def longest_word(txt: str, regex: str) -> str:
     """Returns the longest string in TXT excluding REGEX."""
     longest = ''
     for i in txt:

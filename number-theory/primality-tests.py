@@ -1,4 +1,6 @@
-def trial_div(n):
+from typing import Generator
+
+def trial_div(n: int) -> bool:
     """Determines if natural number N is prime by trial division."""
     if n == 1:
         return False
@@ -10,7 +12,7 @@ def trial_div(n):
     return True
 
 
-def lucas_lehmer():
+def lucas_lehmer() -> Generator[int, None, None]:
     """Generates the Lucas-Lehmer sequence."""
     seed = 4
     while True:
@@ -18,7 +20,7 @@ def lucas_lehmer():
         seed = seed**2 - 2
 
 
-def ll_primality(n):
+def ll_primality(n: int) -> bool:
     """Determines if Mersenne number 2^N - 1 is prime via the Lucas-Lehmer primality test."""
     if n <= 2 or not trial_div(n):
         return False
@@ -28,7 +30,7 @@ def ll_primality(n):
     return ll % (2**n - 1) == 0
 
 
-def sieve(n):
+def sieve(n: int) -> Generator[int, None, None]:
     """Yields all primes below N using the Sieve of Eratosthenes."""
     primes, p = [i for i in range(2, n + 1)], 2
     while p**2 < n:
@@ -37,4 +39,3 @@ def sieve(n):
                 primes.remove(i)
         p += 1
     yield from primes
-

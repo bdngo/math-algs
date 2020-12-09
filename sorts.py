@@ -1,6 +1,9 @@
 """Various sorts."""
+from typing import List, TypeVar
 
-def insertion_sort(arr):
+T = TypeVar('T')
+
+def insertion_sort(arr: List[T]) -> List[T]:
     for i in range(len(arr)):
         j = i
         while j > 0 and arr[j - 1] > arr[j]:
@@ -9,19 +12,19 @@ def insertion_sort(arr):
     return arr
 
 
-def selection_sort(arr):
+def selection_sort(arr: List[T]) -> List[T]:
     for i in range(len(arr)):
         argmin = arr.index(min(arr[i:]), i)
         arr[i], arr[argmin] = arr[argmin], arr[i]
     return arr
 
 
-def merge_sort(arr):
+def merge_sort(arr: List[T]) -> List[T]:
     if len(arr) == 0:
         return []
     elif len(arr) == 1:
         return arr
-    def merge(a, b):
+    def merge(a: List[T], b: List[T]) -> List[T]:
         if len(a) == 0:
             return b
         elif len(b) == 0:
@@ -33,14 +36,14 @@ def merge_sort(arr):
     return merge(merge_sort(arr[:half]), merge_sort(arr[half:]))
 
 
-def quick_sort(arr):
+def quick_sort(arr: List[T]) -> List[T]:
     if len(arr) == 0:
         return []
     head, tail = arr[0], arr[1:]
     return quick_sort(list(filter(lambda x: x <= head, tail))) + [head] + quick_sort(list(filter(lambda x: x > head, tail)))
 
 
-def lsd_sort(arr):
+def lsd_sort(arr: List[T]) -> List[T]:
     mask = 1
     while mask < (1 << 30):
         bins = {i: [] for i in range(10)}
@@ -53,7 +56,7 @@ def lsd_sort(arr):
     return arr
 
 
-def main():
+def main() -> None:
     arr = [1, 4, 2, 6, 7, 2, 4, 10, 8, 2, 3, 3]
     print(lsd_sort(arr))
 

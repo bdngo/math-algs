@@ -1,7 +1,9 @@
+from typing import Callable, Tuple
+
 f = lambda x: x**2
 g = lambda x: 3*x - 2
 func = lambda x: f(x) - g(x)
-init_interval = [1.5, 10.] # pick sufficiently small interval
+init_interval = (1.5, 10.) # pick sufficiently small interval
 
 def sgn(x):
     if x < 0:
@@ -11,7 +13,7 @@ def sgn(x):
     else:
         return 1
 
-def find_zeroes(function, interval, threshold):
+def find_zeroes(function: Callable[[float], float], interval: Tuple[float], threshold: float) -> float:
     """Solves for the intersection of 2 single-variable functions."""
     zero, threshold = 0, 100
     left, right = interval[0], interval[1]

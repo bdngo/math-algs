@@ -1,8 +1,9 @@
 from random import sample
+from typing import Callable, List
 
 names = ['Alice', 'Bob', 'Charlie', 'Danielle', 'Emily']
 
-def draw_lots(name_lst):
+def draw_lots(name_lst: List[str]) -> List[str]:
     """Draws lots from NAME_LST, prints each result."""
     new_names = []
     for i in sample(range(len(name_lst)), len(name_lst)):
@@ -12,7 +13,7 @@ def draw_lots(name_lst):
 
 new_names = draw_lots(names)
 
-def bogo_sort(condition):
+def bogo_sort(condition: Callable[[List[str]], List[str]]) -> int:
     """Sorts the list repeatedly until CONDITION is met. Returns number of RUNS required."""
     global names, new_names
     runs = 0

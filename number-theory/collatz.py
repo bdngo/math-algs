@@ -1,4 +1,6 @@
-def collatz(n):
+from typing import List
+
+def collatz(n: int) -> List[int]:
     """Prints the Collatz sequence for a positive integer N."""
     if n == 1:
         return [1]
