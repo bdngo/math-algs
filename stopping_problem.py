@@ -1,6 +1,6 @@
+from math import e, sqrt
 from random import sample
-from math import sqrt, e
-from typing import Callable, List, Tuple, Union
+from typing import Callable, Tuple, Union
 
 candidates = range(10000)
 

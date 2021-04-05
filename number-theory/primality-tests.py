@@ -1,5 +1,6 @@
 from typing import Generator
 
+
 def trial_div(n: int) -> bool:
     """Determines if natural number N is prime by trial division."""
     if n == 1:

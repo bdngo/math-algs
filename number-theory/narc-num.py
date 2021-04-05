@@ -1,4 +1,5 @@
-from typing import List, Tuple
+from typing import List
+
 
 def int_to_list(n: int, base: int=10) -> List[int]:
     """Returns a list of the digits of N."""

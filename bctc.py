@@ -1,5 +1,6 @@
 from random import randint
 
+
 def bctc(rolls: int) -> float:
     """Calculates the win/loss ratio for the Vietnamese betting game 'Bầu Cua Tôm Cá.'"""
     wins = 0

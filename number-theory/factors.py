@@ -1,5 +1,6 @@
 from typing import List
 
+
 def prime_factors(n: int, k: int=2) -> List[int]:
     """Returns the prime factorization of a natural number N."""
     if n == 1:

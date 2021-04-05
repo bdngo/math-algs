@@ -1,5 +1,6 @@
 from typing import List
 
+
 def digit_root(n: int, base: int=10) -> int:
     """Returns the digital root for an integer N."""
     assert type(n) == 'int'

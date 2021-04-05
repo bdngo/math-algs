@@ -1,5 +1,7 @@
 from __future__ import annotations
-from typing import Dict, List, Union
+
+from typing import List, Union
+
 
 class HuffmanTree:
     """Class for a node of a Huffman encoding tree."""

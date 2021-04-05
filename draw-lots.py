@@ -1,7 +1,7 @@
 from random import sample
 from typing import Callable, List
 
-names = ['Alice', 'Bob', 'Charlie', 'Danielle', 'Emily']
+NAMES = ['Alice', 'Bob', 'Charlie', 'Danielle', 'Emily']
 
 def draw_lots(name_lst: List[str]) -> List[str]:
     """Draws lots from NAME_LST, prints each result."""
@@ -11,14 +11,14 @@ def draw_lots(name_lst: List[str]) -> List[str]:
         new_names.append(name_lst[i])
     return new_names
 
-new_names = draw_lots(names)
+new_names = draw_lots(NAMES)
 
 def bogo_sort(condition: Callable[[List[str]], List[str]]) -> int:
     """Sorts the list repeatedly until CONDITION is met. Returns number of RUNS required."""
-    global names, new_names
+    global NAMES, new_names
     runs = 0
     while not condition():
-        new_names = draw_lots(names)
+        new_names = draw_lots(NAMES)
         runs += 1
     else:
         print(runs)
