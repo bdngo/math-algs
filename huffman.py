@@ -12,7 +12,7 @@ class HuffmanTree:
         self._left, self._right = left, right
 
     def __repr__(self) -> str:
-        return "'{0}' ({1})\nleft: {2}\nright: {3}\n".format(self._char, self._freq, self._left, self._right)
+        return f"'{self._char}' ({self._freq})\nleft: {self._left}\nright: {self._right}\n"
 
     @staticmethod
     def construct(nodes: List[HuffmanTree]) -> HuffmanTree:
@@ -62,7 +62,7 @@ def main() -> None:
     s = "the quick brown fox jumps over the lazy dog"
     compressed, tree = encode(s)
     print(compressed)
-    print("Compression ratio: {0}".format(len(s) * 8 / len(compressed)))
+    print(f"Compression ratio: {len(s) * 8 / len(compressed)}")
     print(decode(compressed, tree))
 
 
