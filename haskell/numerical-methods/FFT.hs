@@ -6,7 +6,6 @@ module FFT (
 
 import Data.Function (on)
 import Data.Complex (mkPolar, Complex(..), realPart, magnitude)
-import Control.Monad (ap)
 
 type CD = Complex Double
 
@@ -27,8 +26,11 @@ fft xs = zipWith3 (evalPoly w) (fftE ++ fftE) (fftO ++ fftO) [0..length xs-1]
         (fftE, fftO) = (fft es, fft os)
         w = mkPolar 1 (2 * pi / fromIntegral (length xs))
 
-ifft :: [Complex Double] -> [Double]
-ifft = ap (map . (. realPart) . (*) . recip . fromIntegral . length) ifftHelper
+ifft :: [CD] -> [Double]
+ifft xs = map convert (ifftHelper xs)
+    where
+        scalar = recip $ fromIntegral $ length xs
+        convert = fromIntegral . round . (*) scalar . realPart
 
 ifftHelper :: [CD] -> [CD]
 ifftHelper [] = []
@@ -40,5 +42,5 @@ ifftHelper xs = zipWith3 (evalPoly w) (ifftE ++ ifftE) (ifftO ++ ifftO) [0..leng
         w = mkPolar 1 (-2 * pi / fromIntegral (length xs))
 
 polyMul :: [Double] -> [Double] -> [Double]
-polyMul p1 p2 = ifft ((zipWith (*) `on` (fft . pad)) p1 p2)
+polyMul = (ifft .) . (zipWith (*) `on` (fft . pad))
     where pad xs = xs ++ replicate (length xs) 0
