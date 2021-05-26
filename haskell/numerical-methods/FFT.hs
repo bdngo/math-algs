@@ -5,7 +5,7 @@ module FFT (
 ) where
 
 import Data.Function (on)
-import Data.Complex (mkPolar, Complex(..), realPart, magnitude)
+import Data.Complex (mkPolar, Complex(..), realPart)
 
 type CD = Complex Double
 
