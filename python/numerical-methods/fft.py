@@ -29,5 +29,3 @@ def poly_mul(p1, p2):
     p1_pad = p1 + [0] * len(p1)
     p2_pad = p2 + [0] * len(p2)
     return ifft([i * j for i, j in zip(fft(p1_pad), fft(p2_pad))])
-
-print(poly_mul([1, 2, 3, 0], [4, 5, 6, 0]))
